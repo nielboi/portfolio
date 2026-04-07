@@ -27,10 +27,10 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         onClick={() => setIsOpen(true)}
-        className="relative grid grid-cols-1 md:grid-cols-12 w-full transition-colors duration-700 rounded-none group cursor-pointer"
+        className="relative grid grid-cols-1 md:grid-cols-12 w-full transition-colors duration-700 rounded-none group cursor-pointer border-b border-[#F4EBDD]/5 md:border-b-0"
       >
       {/* Media Side (Left - 5 Columns) */}
-      <div className="md:col-span-5 px-4 md:px-8 py-4 lg:py-6 flex items-center justify-center">
+      <div className="md:col-span-5 px-4 md:px-8 py-2 md:py-4 lg:py-6 flex items-center justify-center">
         <div className="relative w-full aspect-[16/10] overflow-hidden rounded-[2rem] bg-[#0F0E0C] border border-[#F4EBDD]/10 shadow-2xl">
           {/* Render Image or Video dynamically */}
           {experience.media.type === "image" ? (
@@ -50,7 +50,7 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
       </div>
 
       {/* Details Side (Right - 7 Columns) */}
-      <div className="md:col-span-7 flex flex-col justify-center px-6 md:-ml-2 md:pr-8 lg:-ml-4 lg:pr-12 py-8 lg:py-10 relative">
+      <div className="md:col-span-7 flex flex-col justify-center px-6 md:-ml-2 md:pr-8 lg:-ml-4 lg:pr-12 py-3 md:py-8 lg:py-10 relative">
 
         <p 
           className="text-sm tracking-widest font-regular mb-2 duration-500 opacity-80"
@@ -71,7 +71,7 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
         
         {/* Description mapped to bottom */}
         <div className="mt-auto">
-          <p className="text-[#F4EBDD]/60 font-light leading-relaxed text-base md:text-lg">
+          <p className="text-[#F4EBDD]/60 font-light leading-relaxed text-sm md:text-lg">
             {desc}
           </p>
         </div>

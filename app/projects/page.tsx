@@ -36,7 +36,7 @@ export default function ProjectsPage() {
       </div>
 
       {/* Projects Grid Container */}
-      <div className="w-[95%] lg:w-[80%] max-w-[1200px] mx-auto flex flex-col gap-0 md:gap-2">
+      <div className="w-[95%] lg:w-[80%] max-w-[1200px] mx-auto flex flex-col gap-6 md:gap-2">
         {projectsMockData.map((project, idx) => (
           <ProjectCard key={project.id} project={project} index={idx} />
         ))}

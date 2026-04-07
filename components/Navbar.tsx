@@ -75,7 +75,7 @@ export default function Navbar() {
       className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-in-out ${
         isScrolled 
           ? "top-6 w-[95%] lg:w-[80%] max-w-[1200px] bg-[#0F0E0C]/80 backdrop-blur-xl border border-[#F4EBDD]/15 py-3 rounded-[3rem] shadow-[0_8px_32px_rgba(0,0,0,0.5)]" 
-          : "top-0 w-full max-w-[1920px] bg-transparent py-8"
+          : "top-0 w-full max-w-[1920px] bg-transparent py-4 lg:py-8"
       }`}
     >
       <div className={`w-full mx-auto flex items-center justify-between transition-all duration-500 ${isScrolled ? "px-6 lg:px-10" : "px-6 lg:px-[5vw]"}`}>
@@ -184,66 +184,83 @@ export default function Navbar() {
         {/* Mobile Menu Toggle Button */}
         <div className="flex-1 flex justify-end md:hidden">
           <button 
-            className="flex flex-col justify-center items-center w-8 h-8 z-50 group"
+            className="z-50"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Open menu"
           >
-            <span className={`block w-6 h-px bg-[#F4EBDD] transition-transform duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-1.5" : "-translate-y-1"}`}></span>
-            <span className={`block w-6 h-px bg-[#F4EBDD] transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-0" : "opacity-100"}`}></span>
-            <span className={`block w-6 h-px bg-[#F4EBDD] transition-transform duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-1.5" : "translate-y-1"}`}></span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 6h18M3 12h18M3 18h18" stroke="#B29058" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
           </button>
         </div>
       </div>
-
-      {/* Mobile Menu Dropdown */}
-      <div 
-        className={`fixed inset-0 bg-[#0F0E0C]/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8 transition-opacity duration-300 md:hidden pt-20 ${
-          isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-      >
-        <Link 
-          href="/#about" 
-          onClick={(e) => handleSmoothScroll(e, 'about')}
-          className={`text-2xl transition-all duration-300 ${activeSection === 'about' && pathname === '/' ? 'text-[#F4EBDD] font-medium opacity-100' : 'text-[#F4EBDD] font-light opacity-40 hover:opacity-100'}`}
-        >
-          About
-        </Link>
-        <Link 
-          href="/projects" 
-          onClick={() => setIsMobileMenuOpen(false)}
-          className={`text-2xl transition-all duration-300 ${activeSection === 'projects' || pathname === '/projects' ? 'text-[#F4EBDD] font-medium opacity-100' : 'text-[#F4EBDD] font-light opacity-40 hover:opacity-100'}`}
-        >
-          Projects
-        </Link>
-        <Link 
-          href="/experiences" 
-          onClick={() => setIsMobileMenuOpen(false)}
-          className={`text-2xl transition-all duration-300 ${activeSection === 'experiences' || pathname === '/experiences' ? 'text-[#F4EBDD] font-medium opacity-100' : 'text-[#F4EBDD] font-light opacity-40 hover:opacity-100'}`}
-        >
-          Experiences
-        </Link>
-        <Link 
-          href="/#contact" 
-          onClick={(e) => handleSmoothScroll(e, 'contact')}
-          className={`text-2xl transition-all duration-300 ${activeSection === 'contact' && pathname === '/' ? 'text-[#F4EBDD] font-medium opacity-100' : 'text-[#F4EBDD] font-light opacity-40 hover:opacity-100'}`}
-        >
-          Connect
-        </Link>
-
-        {/* Mobile Resume Button */}
-        <button className="flex items-center gap-2 px-8 py-3 mt-4 rounded-full border border-[#F4EBDD] text-[#F4EBDD] text-lg font-light hover:bg-[#F4EBDD] hover:text-[#0F0E0C] transition-colors duration-300 group">
-          Resume
-          <svg 
-            className="w-5 h-5 transition-transform group-hover:translate-y-0.5" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24" 
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-          </svg>
-        </button>
-      </div>
     </nav>
+
+    {/* Mobile Menu Dropdown - OUTSIDE nav to avoid transform context issues */}
+    <div 
+      className={`fixed inset-0 bg-[#0F0E0C]/95 backdrop-blur-xl z-[60] flex flex-col items-center justify-center gap-8 transition-opacity duration-300 md:hidden ${
+        isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      }`}
+    >
+      {/* Close button */}
+      <button 
+        className="absolute top-4 right-6 z-50"
+        onClick={() => setIsMobileMenuOpen(false)}
+        aria-label="Close menu"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6l12 12" stroke="#B29058" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      </button>
+
+      <Link 
+        href="/#about" 
+        onClick={(e) => handleSmoothScroll(e, 'about')}
+        className={`text-2xl transition-all duration-300 ${activeSection === 'about' && pathname === '/' ? 'text-[#F4EBDD] font-medium opacity-100' : 'text-[#F4EBDD] font-light opacity-40 hover:opacity-100'}`}
+      >
+        About
+      </Link>
+      <Link 
+        href="/projects" 
+        onClick={() => setIsMobileMenuOpen(false)}
+        className={`text-2xl transition-all duration-300 ${activeSection === 'projects' || pathname === '/projects' ? 'text-[#F4EBDD] font-medium opacity-100' : 'text-[#F4EBDD] font-light opacity-40 hover:opacity-100'}`}
+      >
+        Projects
+      </Link>
+      <Link 
+        href="/experiences" 
+        onClick={() => setIsMobileMenuOpen(false)}
+        className={`text-2xl transition-all duration-300 ${activeSection === 'experiences' || pathname === '/experiences' ? 'text-[#F4EBDD] font-medium opacity-100' : 'text-[#F4EBDD] font-light opacity-40 hover:opacity-100'}`}
+      >
+        Experiences
+      </Link>
+      <Link 
+        href="/#contact" 
+        onClick={(e) => handleSmoothScroll(e, 'contact')}
+        className={`text-2xl transition-all duration-300 ${activeSection === 'contact' && pathname === '/' ? 'text-[#F4EBDD] font-medium opacity-100' : 'text-[#F4EBDD] font-light opacity-40 hover:opacity-100'}`}
+      >
+        Connect
+      </Link>
+
+      {/* Mobile Resume Button */}
+      <a 
+        href="https://drive.google.com/file/d/1jNvbURiwiTtpjWUOL-Bb1RPBdFh3ME3R/view?usp=sharing"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-2 px-8 py-3 mt-4 rounded-full border border-[#F4EBDD] text-[#F4EBDD] text-lg font-light hover:bg-[#F4EBDD] hover:text-[#0F0E0C] transition-colors duration-300 group"
+      >
+        Resume
+        <svg 
+          className="w-5 h-5 transition-transform group-hover:translate-y-0.5" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+      </a>
+    </div>
     </>
   );
 }
