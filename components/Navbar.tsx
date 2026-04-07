@@ -162,7 +162,12 @@ export default function Navbar() {
             </div>
           </div>
 
-          <button className="flex items-center gap-2 px-6 py-2 rounded-full border border-[#F4EBDD] text-[#F4EBDD] text-sm lg:text-base font-light hover:bg-[#F4EBDD] hover:text-[#0F0E0C] transition-colors duration-300 group translate-x-6">
+          <a 
+            href="https://drive.google.com/file/d/1jNvbURiwiTtpjWUOL-Bb1RPBdFh3ME3R/view?usp=sharing" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex items-center gap-2 px-6 py-2 rounded-full border border-[#F4EBDD] text-[#F4EBDD] text-sm lg:text-base font-light hover:bg-[#F4EBDD] hover:text-[#0F0E0C] transition-colors duration-300 group translate-x-6 cursor-pointer"
+          >
             Resume
             <svg 
               className="w-4 h-4 transition-transform group-hover:translate-y-0.5" 
@@ -171,9 +176,9 @@ export default function Navbar() {
               viewBox="0 0 24 24" 
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
-          </button>
+          </a>
         </div>
 
         {/* Mobile Menu Toggle Button */}
