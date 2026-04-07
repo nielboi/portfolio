@@ -91,6 +91,6 @@ export const projectsMockData: ProjectData[] = [
       },
       techStack: ["Swift", "SwiftUI"]
     },
-    extendedDetails: projectDetailsMap["project-3"]
+    extendedDetails: projectDetailsMap["project-4"]
   },
 ];
