@@ -35,7 +35,7 @@ export default function ExperiencesPage() {
       </div>
 
       {/* Grid Container */}
-      <div className="w-[95%] lg:w-[80%] max-w-[1200px] mx-auto flex flex-col gap-0 md:gap-2">
+      <div className="w-[95%] lg:w-[80%] max-w-[1200px] mx-auto flex flex-col gap-6 md:gap-2">
         {experiencesMockData.map((exp, idx) => (
           <ExperienceCard key={exp.id} experience={exp} index={idx} />
         ))}
