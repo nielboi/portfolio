@@ -1,16 +1,18 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
+import emailjs from "@emailjs/browser";
 
 interface ContactFormProps {
   language: string | null;
 }
 
 export default function ContactForm({ language }: ContactFormProps) {
-  const [step, setStep] = useState<"form" | "card" | "flying" | "success">("form");
+  const [step, setStep] = useState<"form" | "card" | "flying" | "success" | "error">("form");
   const [formData, setFormData] = useState({ name: "", company: "", email: "" });
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,14 +23,25 @@ export default function ContactForm({ language }: ContactFormProps) {
       email: form.get("email") as string || "niel@example.com"
     });
     setStep("card");
-    
-    // 원형 비행(1.5초)가 완전히 끝난 후, 정확히 1.3초를 대기하고 위로 날아갑니다. (1.5 + 1.3 = 2.8)
+
+    // Send email via EmailJS in background
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    let emailFailed = false;
+
+    if (serviceId && templateId && publicKey && formRef.current) {
+      emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
+        .catch(() => { emailFailed = true; });
+    }
+
+    // Card animation plays, then fly up, then show result
     setTimeout(() => {
       setStep("flying");
       
-      // 1초 동안 아래로 쫀득하게 당겨졌다가 위로 날아감 (backIn)
       setTimeout(() => {
-        setStep("success");
+        setStep(emailFailed ? "error" : "success");
       }, 1000); 
     }, 3000); 
   };
@@ -48,14 +61,14 @@ export default function ContactForm({ language }: ContactFormProps) {
           >
             <div className="text-center mb-6 sm:mb-8 lg:mb-12">
               <h2 className="text-3xl sm:text-4xl md:text-7xl lg:text-[80px] font-thin leading-tight">
-                Connect with Niel
+                {language === "en" ? "Connect with Niel" : "승재에게 연락하기"}
               </h2>
               <p className="text-sm sm:text-base md:text-xl font-light mt-1 sm:mt-2">
                 {language === "en" ? "Are you ready to make changes with me?" : "저와 함께 변화를 만들어갈 준비가 되셨나요?"}
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5 sm:gap-6 lg:gap-8">
+            <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-5 sm:gap-6 lg:gap-8">
               <div className="flex flex-col sm:flex-row gap-5 sm:gap-6 lg:gap-8">
                 <input name="name" required type="text" placeholder={language === "en" ? "Name *" : "성함 *"} className="bg-transparent border-b border-[#F4EBDD]/30 pb-2 sm:pb-3 flex-1 font-light text-sm sm:text-base focus:outline-none focus:border-[#F4EBDD] transition-colors" />
                 <input name="company" required type="text" placeholder={language === "en" ? "Company *" : "소속/회사 *"} className="bg-transparent border-b border-[#F4EBDD]/30 pb-2 sm:pb-3 flex-1 font-light text-sm sm:text-base focus:outline-none focus:border-[#F4EBDD] transition-colors" />
@@ -77,7 +90,7 @@ export default function ContactForm({ language }: ContactFormProps) {
         {(step === "card" || step === "flying") && (
           <motion.div
             key="cardWrapper"
-            className="absolute bottom-[-15vh] w-[90vw] h-[90vw] sm:w-[60vh] sm:h-[60vh] lg:w-[90vh] lg:h-[90vh] left-1/2 -translate-x-1/2 flex items-start justify-center origin-bottom z-20 pointer-events-none"
+            className="absolute bottom-[-5vh] w-[90vw] h-[90vw] sm:w-[60vh] sm:h-[60vh] lg:w-[90vh] lg:h-[90vh] left-1/2 -translate-x-1/2 flex items-start justify-center origin-bottom z-20 pointer-events-none"
             initial={{ rotate: -90, opacity: 0 }}
             animate={step === "card" 
               ? { rotate: 0, opacity: 1, y: 0 } 
@@ -135,11 +148,11 @@ export default function ContactForm({ language }: ContactFormProps) {
             <p className="text-xl sm:text-3xl md:text-5xl font-thin leading-snug">
               {language === "en" ? (
                 <>
-                  <strong className="font-medium tracking-normal">{formData.name}</strong>, Thank you for contacting!
+                  <strong className="font-medium tracking-normal">{formData.name}</strong>, <br/>Thank you for contacting!
                 </>
               ) : (
                 <>
-                  <strong className="font-medium tracking-normal">{formData.name}</strong>님, 연락주셔서 감사합니다!
+                  <strong className="font-medium tracking-normal">{formData.name}</strong>님, <br/>연락주셔서 감사합니다!
                 </>
               )}
             </p>
@@ -154,6 +167,39 @@ export default function ContactForm({ language }: ContactFormProps) {
               className="mt-8 sm:mt-16 px-6 sm:px-8 py-2 sm:py-3 rounded-full border border-[#F4EBDD]/30 text-xs sm:text-sm font-light transition-all duration-300 hover:bg-[#F4EBDD]/10"
             >
               {language === "en" ? "Send another message" : "다른 메시지 보내기"}
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 4. Error Message */}
+      <AnimatePresence>
+        {step === "error" && (
+          <motion.div
+            key="error"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ type: "spring", damping: 20, delay: 0.2 }}
+            className="absolute z-30 flex flex-col items-center text-center text-[#F4EBDD] p-4 sm:p-6"
+          >
+            <div className="relative w-20 h-20 sm:w-32 sm:h-32 flex items-center justify-center mb-4 sm:mb-8">
+              <svg className="w-8 h-8 sm:w-12 sm:h-12 text-red-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+            <p className="text-xl sm:text-3xl md:text-5xl font-thin leading-snug">
+              {language === "en" ? "Oops, something went wrong." : "오류가 발생했습니다."}
+            </p>
+            <p className="text-sm sm:text-lg md:text-xl font-light opacity-80 mt-3 sm:mt-6">
+              {language === "en"
+                ? "Please try again or email me directly."
+                : "다시 시도하시거나 직접 이메일을 보내주세요."}
+            </p>
+            <button
+              onClick={() => setStep("form")}
+              className="mt-8 sm:mt-16 px-6 sm:px-8 py-2 sm:py-3 rounded-full border border-[#F4EBDD]/30 text-xs sm:text-sm font-light transition-all duration-300 hover:bg-[#F4EBDD]/10"
+            >
+              {language === "en" ? "Try again" : "다시 시도하기"}
             </button>
           </motion.div>
         )}

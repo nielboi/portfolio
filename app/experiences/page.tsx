@@ -56,7 +56,7 @@ export default function ExperiencesPage() {
           href="/#contact" 
           className="px-12 py-5 bg-[#B29058] text-[#0a0908] text-lg font-medium tracking-widest rounded-full hover:brightness-110 transition-all duration-500 shadow-[0_0_40px_rgba(178,144,88,0.2)] hover:shadow-[0_0_60px_rgba(178,144,88,0.4)]"
         >
-          {language === "en" ? "Let's Connect" : "연결하기"}
+          {language === "en" ? "Let's Connect" : "연락하기"}
         </Link>
       </motion.div>
     </main>

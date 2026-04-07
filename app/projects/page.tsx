@@ -51,13 +51,13 @@ export default function ProjectsPage() {
         className="w-full flex flex-col items-center justify-center mt-32 md:mt-40 mb-10 text-center px-6"
       >
         <h2 className="text-3xl md:text-5xl font-light text-[#F4EBDD] tracking-tight mb-10 leading-tight">
-          {language === "en" ? "Ready to create something amazing?" : "저와 함께 멋진 프로젝트를 완성하세요!"}
+          {language === "en" ? "Ready to create something exciting?" : "저와 함께 멋진 프로젝트를 완성하세요!"}
         </h2>
         <Link 
           href="/#contact" 
           className="px-12 py-5 bg-[#B29058] text-[#0a0908] text-lg font-medium tracking-widest rounded-full hover:brightness-110 transition-all duration-500 shadow-[0_0_40px_rgba(178,144,88,0.2)] hover:shadow-[0_0_60px_rgba(178,144,88,0.4)]"
         >
-          {language === "en" ? "Let's Connect" : "연결하기"}
+          {language === "en" ? "Let's Connect" : "연락하기"}
         </Link>
       </motion.div>
     </main>
