@@ -58,14 +58,30 @@ export default function Navbar() {
   }, []);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    // If we're already on the home page, smoothly scroll to the section
+    const isMobile = window.innerWidth < 1024;
+    const resolvedId = (targetId === 'about' && isMobile) ? 'about-mobile' : targetId;
+
     if (pathname === '/') {
+      // Already on home page — smooth scroll directly
       e.preventDefault();
-      const element = document.getElementById(targetId);
+      const element = document.getElementById(resolvedId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        setIsMobileMenuOpen(false); // Close mobile menu if open
+        if (resolvedId === 'about-mobile') {
+          // Center the mobile about section in the viewport with some breathing room
+          const rect = element.getBoundingClientRect();
+          const targetTop = rect.top + window.scrollY;
+          const offset = targetTop - (window.innerHeight - rect.height) / 2;
+          window.scrollTo({ top: Math.max(0, offset), behavior: 'smooth' });
+        } else {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+        setIsMobileMenuOpen(false);
       }
+    } else if (resolvedId !== targetId) {
+      // Navigating from another page and need a different hash for mobile
+      e.preventDefault();
+      setIsMobileMenuOpen(false);
+      window.location.href = `/#${resolvedId}`;
     }
   };
 
@@ -131,36 +147,8 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Right: Actions (Language Toggle & Resume Button) */}
+        {/* Right: Actions (Resume Button) */}
         <div className="flex-1 hidden md:flex items-center justify-end gap-6">
-          
-          {/* Language Dropdown (Fades in when scrolled) */}
-          {/* 부모 group에 상하좌우 충분한 패딩(p-4)과 네거티브 마진(-m-4)을 주어 레이아웃 변형 없이 투명 호버 영역만 강제 확장합니다. */}
-          <div className={`relative flex items-center h-full p-4 -m-4 text-sm font-light text-[#F4EBDD] transition-opacity duration-300 group ${isScrolled ? "opacity-100" : "opacity-0 pointer-events-none hidden md:flex"}`}>
-            {/* Trigger */}
-            <button className="flex items-center gap-1.5 opacity-80 hover:opacity-100 transition-opacity py-2 px-2">
-              {language === 'en' ? 'English' : '한국어'}
-              <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            {/* Dropdown Menu */}
-            <div className="absolute top-[85%] left-[44%]  w-32 bg-[#0F0E0C]/90 backdrop-blur-2xl border border-[#F4EBDD]/15 rounded-2xl overflow-hidden opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 -translate-x-1/2 translate-y-[-5px] group-hover:-translate-x-1/2 group-hover:translate-y-0 flex flex-col shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
-              <button 
-                onClick={() => setLanguage('ko')}
-                className={`py-3 px-2 text-center text-sm hover:bg-[#F4EBDD]/10 transition-colors tracking-wide ${language === 'ko' ? 'text-[#F4EBDD] font-medium' : 'text-[#F4EBDD]/50 font-light'}`}
-              >
-                한국어
-              </button>
-              <button 
-                onClick={() => setLanguage('en')}
-                className={`py-3 px-2 text-center text-sm hover:bg-[#F4EBDD]/10 transition-colors tracking-wide ${language === 'en' ? 'text-[#F4EBDD] font-medium' : 'text-[#F4EBDD]/50 font-light'}`}
-              >
-                English
-              </button>
-            </div>
-          </div>
 
           <a 
             href="https://drive.google.com/file/d/1jNvbURiwiTtpjWUOL-Bb1RPBdFh3ME3R/view?usp=sharing" 
@@ -208,7 +196,7 @@ export default function Navbar() {
         onClick={() => setIsMobileMenuOpen(false)}
         aria-label="Close menu"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M18 6L6 18M6 6l12 12" stroke="#B29058" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       </button>
@@ -260,6 +248,42 @@ export default function Navbar() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
         </svg>
       </a>
+
+      {/* Mobile Language Selector - bottom of menu */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-6 text-sm text-[#F4EBDD]/60">
+        <button 
+          onClick={() => { setLanguage('ko'); setIsMobileMenuOpen(false); }}
+          className={`transition-all duration-200 ${language === 'ko' ? 'text-[#B29058] font-medium' : 'font-light hover:text-[#F4EBDD]'}`}
+        >
+          한국어
+        </button>
+        <span className="text-[#F4EBDD]/20">|</span>
+        <button 
+          onClick={() => { setLanguage('en'); setIsMobileMenuOpen(false); }}
+          className={`transition-all duration-200 ${language === 'en' ? 'text-[#B29058] font-medium' : 'font-light hover:text-[#F4EBDD]'}`}
+        >
+          English
+        </button>
+      </div>
+    </div>
+
+    {/* Desktop: Fixed bottom-right language widget */}
+    <div className={`fixed bottom-6 right-6 z-50 hidden lg:flex items-center gap-3 text-sm transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+      <div className="flex items-center gap-3 bg-[#0F0E0C]/80 backdrop-blur-xl border border-[#F4EBDD]/10 rounded-full px-4 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+        <button 
+          onClick={() => setLanguage('ko')}
+          className={`transition-all duration-200 ${language === 'ko' ? 'text-[#B29058] font-medium' : 'text-[#F4EBDD]/50 font-light hover:text-[#F4EBDD]'}`}
+        >
+          한국어
+        </button>
+        <span className="text-[#F4EBDD]/20">|</span>
+        <button 
+          onClick={() => setLanguage('en')}
+          className={`transition-all duration-200 ${language === 'en' ? 'text-[#B29058] font-medium' : 'text-[#F4EBDD]/50 font-light hover:text-[#F4EBDD]'}`}
+        >
+          English
+        </button>
+      </div>
     </div>
     </>
   );
