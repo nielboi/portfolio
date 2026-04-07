@@ -62,7 +62,7 @@ export default function Home() {
           {/* 배경 블러 이미지 */}
           <div className="absolute w-[100vw] h-[100vw] left-[-15%] top-1/2 -translate-y-1/2 animate-pulse-blur">
             <Image
-              src="/images/home-element-blur.png"
+              src="/images/hero/home-element-blur.webp"
               alt="background blur"
               fill
               className="object-contain"
@@ -72,7 +72,7 @@ export default function Home() {
 
           <div className="absolute w-[45vw] h-[45vw] left-[10%] top-5/9 -translate-y-1/2">
             <Image
-              src="/images/stone-group.png"
+              src="/images/hero/stone-group.webp"
               alt="stone group"
               fill
               className="object-contain"
@@ -130,7 +130,7 @@ export default function Home() {
                 className="absolute w-full h-full top-0 z-10"
               >
                 <Image
-                  src="/images/about-card-top.png"
+                  src="/images/hero/about-card-top.webp"
                   alt="about card top"
                   fill
                   className="object-contain"
@@ -148,7 +148,7 @@ export default function Home() {
                 className="absolute w-full h-full top-[20%] z-20"
               >
                 <Image
-                  src="/images/about-card-mid.png"
+                  src="/images/hero/about-card-mid.webp"
                   alt="about card mid"
                   fill
                   className="object-contain"
@@ -166,7 +166,7 @@ export default function Home() {
                 className="absolute w-full h-full top-[40%] z-30"
               >
                 <Image
-                  src="/images/about-card-bot.png"
+                  src="/images/hero/about-card-bot.webp"
                   alt="about card bot"
                   fill
                   className="object-contain"
