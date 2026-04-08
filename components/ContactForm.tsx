@@ -26,14 +26,25 @@ export default function ContactForm({ language }: ContactFormProps) {
 
     // Send email via EmailJS in background
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const autoReplyTemplateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const notifyTemplateId = process.env.NEXT_PUBLIC_EMAILJS_NOTIFY_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     let emailFailed = false;
 
-    if (serviceId && templateId && publicKey && formRef.current) {
-      emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
-        .catch(() => { emailFailed = true; });
+    if (serviceId && publicKey && formRef.current) {
+      const promises: Promise<unknown>[] = [];
+
+      // 1. Auto-reply to sender
+      if (autoReplyTemplateId) {
+        promises.push(emailjs.sendForm(serviceId, autoReplyTemplateId, formRef.current, publicKey));
+      }
+      // 2. Notification to me
+      if (notifyTemplateId) {
+        promises.push(emailjs.sendForm(serviceId, notifyTemplateId, formRef.current, publicKey));
+      }
+
+      Promise.all(promises).catch(() => { emailFailed = true; });
     }
 
     // Card animation plays, then fly up, then show result
@@ -192,8 +203,8 @@ export default function ContactForm({ language }: ContactFormProps) {
             </p>
             <p className="text-sm sm:text-lg md:text-xl font-light opacity-80 mt-3 sm:mt-6">
               {language === "en"
-                ? "Please try again or email me directly."
-                : "다시 시도하시거나 직접 이메일을 보내주세요."}
+                ? "Please try again or email me directly via address on resume. I apologize for the inconvenience."
+                : "다시 시도하시거나 이력서에 기재된 이메일로 직접 연락주세요. 불편을 드려 죄송합니다."}
             </p>
             <button
               onClick={() => setStep("form")}
