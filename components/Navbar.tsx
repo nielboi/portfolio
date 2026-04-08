@@ -151,7 +151,7 @@ export default function Navbar() {
         <div className="flex-1 hidden md:flex items-center justify-end gap-6">
 
           <a 
-            href="https://drive.google.com/file/d/1jNvbURiwiTtpjWUOL-Bb1RPBdFh3ME3R/view?usp=sharing" 
+            href="https://drive.google.com/file/d/1_TOs-YjwLE2TjASUg9MJCkC08UBPGN6M/view?usp=sharing" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="flex items-center gap-2 px-6 py-2 rounded-full border border-[#F4EBDD] text-[#F4EBDD] text-sm lg:text-base font-light hover:bg-[#F4EBDD] hover:text-[#0F0E0C] transition-colors duration-300 group translate-x-6 cursor-pointer"
@@ -232,7 +232,7 @@ export default function Navbar() {
 
       {/* Mobile Resume Button */}
       <a 
-        href="https://drive.google.com/file/d/1jNvbURiwiTtpjWUOL-Bb1RPBdFh3ME3R/view?usp=sharing"
+        href="https://drive.google.com/file/d/1_TOs-YjwLE2TjASUg9MJCkC08UBPGN6M/view?usp=sharing"
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-2 px-8 py-3 mt-4 rounded-full border border-[#F4EBDD] text-[#F4EBDD] text-lg font-light hover:bg-[#F4EBDD] hover:text-[#0F0E0C] transition-colors duration-300 group"
