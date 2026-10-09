@@ -134,36 +134,36 @@ export const projectDetailsMap: Record<string, ExtendedDetails> = {
       }
     ]
   },
-  "project-5": {
-    links: [
-      { label: "Website", url: "https://tinyurl.com/bread-niel" },
-      { label: "Github", url: "https://github.com/CSCE331-Fall2025-900-911/project3_gang30.git" }
-    ],
-    sections: [
-      {
-        subtitle: { ko: "개요", en: "Overview" },
-        image: "/images/project/bread/home.png",
-        description: { 
-          ko: "Software Engineering 강의 중 마지막으로 수행한 프로젝트입니다. 문제 정의부터 시작하여 배포까지 전체 소프트웨어 개발 프로세스를 경험할 수 있었습니다. 특히, 처음으로 애자일 개발 방식을 접할 수 있었습니다. 주로 풀스택 개발을 진행했으며, 팀원들의 코드를 리뷰해주고 버그를 잡는 역할을 담당했습니다. 기능 개발 뿐만이 아닌 접근성에도 신경쓰며 개발을 진행했습니다.", 
-          en: "This was the final project for my Software Engineering course. It provided a comprehensive experience of the entire software development lifecycle, from problem definition to deployment. Notably, it was my first exposure to Agile development methodologies. I primarily worked on full-stack development, taking on the role of reviewing team members' code and fixing bugs. I focused on developing not only features but also accessibility." 
-        }
-      },
-      {
-        subtitle: { ko: "문제점 발굴", en: "Problem Discovery" },
-        image: "/images/project/bread/home.png",
-        description: { 
-          ko: "우선, 저희 팀은 실제 업장에 방문하여 문제점을 파악하고자 했습니다. Square이라는 POS 시스템과 맥도날드의 키오스크를 사용해보고 POS와 키오스크를 사용해본 사용자와 인터뷰를 진행했습니다. 두 조사 방식을 통해 공통적으로 발견된 문제점은 " 
-          en: "The most significant challenge during the project was the development environment. Since the primary development environment was an iPad with limited resources, there were limitations in simulation. To overcome this, I actively utilized AI as a tool to refactor the code, making it light enough to simulate on the iPad. Additionally, it was disappointing that the Swift Playgrounds app only supported up to iOS 18, preventing the adoption of the latest frameworks. However, this allowed for the advantage of designing a stable UI considering backward compatibility. Currently, based on the prototype, I plan to apply the latest UI and improve performance using school equipment." 
-        }
-      },
-      {
-        subtitle: { ko: "배운 점", en: "Lessons Learned" },
-        image: "/images/project/clearly/gallery.png",
-        description: { 
-          ko: "새로운 언어를 배울 수 있었고, AI를 단순 도구를 넘어 코딩 파트너로서 활용한 효율적 개발 프로세스를 경험할 수 있었습니다. 또한, 제한된 환경에서 개발을 진행하며 자원 최적화와 문제 해결 역량을 강화할 수 있었습니다.", 
-          en: "I learned a new language and experienced an efficient development process by utilizing AI as a coding partner beyond a simple tool. Additionally, by developing in a limited environment, I strengthened my resource optimization and problem-solving skills." 
-        }
-      }
-    ]
-  },
+  // "project-5": {
+  //   links: [
+  //     { label: "Website", url: "https://tinyurl.com/bread-niel" },
+  //     { label: "Github", url: "https://github.com/CSCE331-Fall2025-900-911/project3_gang30.git" }
+  //   ],
+  //   sections: [
+  //     {
+  //       subtitle: { ko: "개요", en: "Overview" },
+  //       image: "/images/project/bread/home.png",
+  //       description: { 
+  //         ko: "Software Engineering 강의 중 마지막으로 수행한 프로젝트입니다. 문제 정의부터 시작하여 배포까지 전체 소프트웨어 개발 프로세스를 경험할 수 있었습니다. 특히, 처음으로 애자일 개발 방식을 접할 수 있었습니다. 주로 풀스택 개발을 진행했으며, 팀원들의 코드를 리뷰해주고 버그를 잡는 역할을 담당했습니다. 기능 개발 뿐만이 아닌 접근성에도 신경쓰며 개발을 진행했습니다.", 
+  //         en: "This was the final project for my Software Engineering course. It provided a comprehensive experience of the entire software development lifecycle, from problem definition to deployment. Notably, it was my first exposure to Agile development methodologies. I primarily worked on full-stack development, taking on the role of reviewing team members' code and fixing bugs. I focused on developing not only features but also accessibility." 
+  //       }
+  //     },
+  //     {
+  //       subtitle: { ko: "문제점 발굴", en: "Problem Discovery" },
+  //       image: "/images/project/bread/home.png",
+  //       description: { 
+  //         ko: "우선, 저희 팀은 실제 업장에 방문하여 문제점을 파악하고자 했습니다. Square이라는 POS 시스템과 맥도날드의 키오스크를 사용해보고 POS와 키오스크를 사용해본 사용자와 인터뷰를 진행했습니다. 두 조사 방식을 통해 공통적으로 발견된 문제점은 기존 POS/KIOSK 시스템은 사용자가 원하는 메뉴를 찾기 어렵다는 점이었습니다. 또한, POS와 KIOSK 모두 접근성에 대한 고려가 부족하다는 점이 발견되었습니다.",
+  //         en: "First, our team aimed to identify issues by visiting actual establishments. We tested the Square POS system and McDonald's kiosks, conducting interviews with users who had experience with both systems. Through these two investigative methods, we consistently found that existing POS/KIOSK systems made it difficult for users to find their desired menu items. Additionally, we discovered that both POS and KIOSK systems lacked sufficient consideration for accessibility." 
+  //       }
+  //     },
+  //     {
+  //       subtitle: { ko: "배운 점", en: "Lessons Learned" },
+  //       image: "/images/project/clearly/gallery.png",
+  //       description: { 
+  //         ko: "새로운 언어를 배울 수 있었고, AI를 단순 도구를 넘어 코딩 파트너로서 활용한 효율적 개발 프로세스를 경험할 수 있었습니다. 또한, 제한된 환경에서 개발을 진행하며 자원 최적화와 문제 해결 역량을 강화할 수 있었습니다.", 
+  //         en: "I learned a new language and experienced an efficient development process by utilizing AI as a coding partner beyond a simple tool. Additionally, by developing in a limited environment, I strengthened my resource optimization and problem-solving skills." 
+  //       }
+  //     }
+  //   ]
+  // },
 };
