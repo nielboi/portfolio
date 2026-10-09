@@ -42,7 +42,7 @@ export const experiencesMockData: ExperienceData[] = [
   },
   {
     id: "exp-2",
-    theme: { accentColor: "#500000" },
+    theme: { accentColor: "#e79f9f" },
     media: {
       type: "image",
       url: "/images/experience/grace-racks.jpg",
@@ -60,7 +60,7 @@ export const experiencesMockData: ExperienceData[] = [
   },
   {
     id: "exp-3",
-    theme: { accentColor: "#180050" },
+    theme: { accentColor: "#aa8eec" },
     media: {
       type: "image",
       url: "/images/experience/cpp-image.jpg",
