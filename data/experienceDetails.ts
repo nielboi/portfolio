@@ -24,5 +24,35 @@ export const experienceDetailsMap: Record<string, ExtendedDetails> = {
         }
       }
     ]
+  },
+  "exp-2": {
+    links: [
+      { label: "TAMU lab description", url: "https://engineering.tamu.edu/cse/research/labs.html" }
+    ],
+    sections: [
+      {
+        subtitle: { ko: "학부연구생으로서의 활동", en: "experience as a undergraduate researcher" },
+        // image: "/images/experience/experience-1-1.jpg",
+        description: {
+          ko: "인턴으로 처음 연구실에 합류하여 최신 논문 리뷰와 발표를 통해 새로운 프로젝트 주제 발굴에 기여하였습니다. 또한, 연구실 내 저널 원고를 리뷰하며 연구 활동을 지원했습니다. 현재 Optical Computing 기반의 AI Accelerator 연구를 수행하고 있고, 최근 랩미팅때 발표한 관련 논문을 기반으로 실험을 진행하고 있습니다.",
+          en: "Initially joined the lab as an intern, contributing to the discovery of new project topics through reviewing and presenting recent papers. Additionally, supported research activities by reviewing journal manuscripts within the lab. Currently conducting research on AI Accelerators based on Optical Computing, and recently conducting experiments based on related papers presented during lab meetings."
+        }
+      },
+    ]
+  },
+  "exp-3": {
+    links: [
+      // { label: "TAMU ", url: "https://engineering.tamu.edu/cse/research/labs.html" }
+    ],
+    sections: [
+      {
+        subtitle: { ko: "조교로서의 활동", en: "experience as a Teaching Assistant" },
+        // image: "/images/experience/experience-1-1.jpg",
+        description: {
+          ko: "학부 1학년과 2학년이 주로 듣는 C++ 입문 과목의 조교로서 학생들의 학습을 지원하고 있습니다. 개인적으로 프로그래밍에 대한 개념을 대학에 처음 들어와 배웠기 때문에, lab section을 진행하며 수업 내용과 실습 과제 관련 학생들의 질문에 답변하여 학생들이 보다 쉽게 이해할 수 있도록 돕고 있습니다. 또한, office hour을 운영하며 학생들이 개념과 과제에 대해서 개별적으로 겪는 어려움을 자발적으로 해결할 수 있도록 지원하고 있습니다. 특히, 과제 및 시험 채점을 넘어서 plagiarism team에 합류하였고 학생들의 과제 표절을 방지 및 검증하는 활동을 수행하고 있습니다.",
+          en: "As a teaching assistant for introductory C++ courses primarily taken by first and second-year undergraduates, I support students' learning. I conduct lab sections, answering questions related to course content and practical assignments, helping students understand the material more easily. As I have first learned programming during my freshman year, I try my best to help the students who are struggling as I have. Additionally, I hold office hours to assist students in independently resolving difficulties they encounter with concepts and assignments. Notably, beyond grading assignments and exams, I have joined the plagiarism team, actively working to prevent and verify instances of plagiarism in student submissions."
+        }
+      },
+    ]
   }
 };
