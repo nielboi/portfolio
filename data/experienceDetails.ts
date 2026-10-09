@@ -24,5 +24,20 @@ export const experienceDetailsMap: Record<string, ExtendedDetails> = {
         }
       }
     ]
+  },
+  "exp-2": {
+    links: [
+      { label: "TAMU lab description", url: "https://engineering.tamu.edu/cse/research/labs.html" }
+    ],
+    sections: [
+      {
+        subtitle: { ko: "학부연구생으로서의 활동", en: "experience as a undergraduate researcher" },
+        // image: "/images/experience/experience-1-1.jpg",
+        description: {
+          ko: "인턴으로 처음 연구실에 합류하여 최신 논문 리뷰와 발표를 통해 새로운 프로젝트 주제 발굴에 기여하였습니다. 또한, 연구실 내 저널 원고를 리뷰하며 연구 활동을 지원했습니다. 현재 Optical Computing 기반의 AI Accelerator 연구를 수행하고 있고, 최근 랩미팅때 발표한 관련 논문을 기반으로 실험을 진행하고 있습니다.",
+          en: "Initially joined the lab as an intern, contributing to the discovery of new project topics through reviewing and presenting recent papers. Additionally, supported research activities by reviewing journal manuscripts within the lab. Currently conducting research on AI Accelerators based on Optical Computing, and recently conducting experiments based on related papers presented during lab meetings."
+        }
+      },
+    ]
   }
 };

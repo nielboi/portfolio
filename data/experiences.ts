@@ -40,4 +40,22 @@ export const experiencesMockData: ExperienceData[] = [
     },
     extendedDetails: experienceDetailsMap["exp-1"]
   },
+  {
+    id: "exp-2",
+    theme: { accentColor: "#500000" },
+    media: {
+      type: "image",
+      url: "/images/experience/grace-racks.jpg",
+    },
+    details: {
+      date: "2026. 05 - Present",
+      company: { ko: "TAMU HPC Lab", en: "TAMU HPC Lab" },
+      role: { ko: "학부 연구생", en: "Undergraduate Researcher" },
+      description: {
+        ko: "Optical Computing 기반의 AI Accelerator 연구를 수행하고 있습니다. 논문 리뷰와 실험을 통해 연구에 기여하고 있으며, 연구실 내 다양한 프로젝트 원고를 리뷰하며 연구활동을 지원하고 있습니다.",
+        en: "Conducting research on AI Accelerators based on Optical Computing. Contributing to the research through paper reviews and experiments, and supporting research activities by reviewing various project manuscripts within the lab."
+      }
+    },
+    extendedDetails: experienceDetailsMap["exp-2"]
+  },
 ];
