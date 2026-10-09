@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Niel Hong Portfolio",
+  title: "Niel Hong",
   description: "Personal portfolio of Niel Hong",
 };
 
