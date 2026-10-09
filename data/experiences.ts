@@ -58,4 +58,22 @@ export const experiencesMockData: ExperienceData[] = [
     },
     extendedDetails: experienceDetailsMap["exp-2"]
   },
+  {
+    id: "exp-3",
+    theme: { accentColor: "#180050" },
+    media: {
+      type: "image",
+      url: "/images/experience/cpp-image.jpg",
+    },
+    details: {
+      date: "2026. 09 - Present",
+      company: { ko: "TAMU CSCE department", en: "TAMU CSCE department" },
+      role: { ko: "학부조교 (C++)", en: "Undergraduate TA (C++)" },
+      description: {
+        ko: "학부 1,2학년이 주로 수강하는 C++ 입문 과목의 조교로서 학생들의 학습을 지원하고 있습니다.",
+        en: "Supporting students' learning as a teaching assistant for introductory C++ courses primarily taken by first and second-year undergraduates."
+      }
+    },
+    extendedDetails: experienceDetailsMap["exp-3"]
+  },
 ];
