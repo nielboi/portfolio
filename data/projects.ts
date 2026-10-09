@@ -35,7 +35,7 @@ export const projectsMockData: ProjectData[] = [
         ko: "오프라인 채용박람회 경험 개선 서비스 프로젝트입니다. 학생과 리크루터가 행사 전, 중, 후에 겪는 불편함을 해결하고 효과적인 네트워킹을 지원하기 위해 개발 중에 있습니다.",
         en: "A project to improve career fair experience (before, during, after) for both students and recruiters. Currently under development."
       },
-      techStack: ["Next.js", "React", "TypeScript", "PostgreSQL", "AWS", "Tailwind CSS"]
+      techStack: ["Next.js", "React", "TypeScript", "PostgreSQL", "AWS", "Tailwind CSS", "Figma"]
     },
     extendedDetails: projectDetailsMap["project-1"]
   },
@@ -53,7 +53,7 @@ export const projectsMockData: ProjectData[] = [
         ko: "학교 내 합창단 조직의 대내외 활동을 관리하는 서비스입니다. 현재 운영중인 시스템을 고객의 요구사항에 맞춰 개선하였습니다.",
         en: "A web application for managing the internal and external activities of the school choir organization. The system was improved from the existing app to meet the specific needs of the organization."
       },
-      techStack: ["Ruby", "Node.js", "PostgreSQL", "Docker", "Heroku"]
+      techStack: ["Ruby", "Node.js", "PostgreSQL", "Docker", "Heroku", "Jira"]
     },
     extendedDetails: projectDetailsMap["project-2"]
   },
@@ -71,7 +71,7 @@ export const projectsMockData: ProjectData[] = [
         ko: "코딩 동아리 프로젝트로 위치/강의 시간표 기반으로 교내 식당을 추천과 식사 소셜라이징을 지원하는 서비스입니다. 현재 모바일팀 팀원으로 참여하고 있습니다.",
         en: "A project to help students find places to eat on campus based on their location and class schedule, and to facilitate social dining. Currently participating as a member of the mobile team."
       },
-      techStack: ["Next.js", "React", "TypeScript", "AWS"]
+      techStack: ["Next.js", "React", "TypeScript", "AWS", "Notion"]
     },
     extendedDetails: projectDetailsMap["project-3"]
   },
@@ -92,5 +92,23 @@ export const projectsMockData: ProjectData[] = [
       techStack: ["Swift", "SwiftUI"]
     },
     extendedDetails: projectDetailsMap["project-4"]
+  },
+  {
+    id: "project-5",
+    theme: { accentColor: "#FF8D45" },
+    media: {
+      type: "image",
+      url: "/images/project/bread.png",
+    },
+    details: {
+      date: "2025. 09 - 2025. 12",
+      title: { ko: "BREAD", en: "BREAD" },
+      description: {
+        ko: "강의 중 프로젝트로 개발한 POS/KIOSK 시스템입니다. 실제 업장에 방문하고 사용자 인터뷰를 통해 문제점을 파악하고 개선하였습니다.",
+        en: "A POS/KIOSK web app developed as a course project. I visited actual stores and conducted user interviews to identify problems and improve the system."
+      },
+      techStack: ["JavaScript", "Python", "PostgreSQL", "AWS", "Figma", "Jira"]
+    },
+    extendedDetails: projectDetailsMap["project-5"]
   },
 ];
